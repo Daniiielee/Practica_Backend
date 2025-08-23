@@ -1,92 +1,62 @@
 <!DOCTYPE html>
+<html lang="es">
 <head>
-    <title>Ejemplo Backend con JSON</title>
-    <style>
-        body {
-            background-color: lightcyan;
-            font-size: 20px;
-        }
-
-        .elEstilo {
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: center;
-            align-items: center;
-        }
-            
-        h1 {
-            color: darkgreen;
-            text-align: center;
-            font-size: 25px;
-        }
-
-        footer{
-            text-align: center;
-            font-size: 15px;
-        }
-
-        table {
-            width: 300px;
-            margin: 20px auto;
-            padding: 5px auto;
-            border: 2px solid;
-            align-content: center;
-        }
-
-        th, td, tr {
-            border: 1px solid;
-        }
-
-        textarea{
-            width: 300px;
-            height: 80px;
-            padding: 5px auto;
-        }
-    </style>    
-    <script type="module" src="scripts/main.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/main.css">
+    <script type="module" src="Scripts/main.js"></script>
+    <title>Calculadora de Cuota Mensual</title>
 </head>
 <body>
-    <main> 
-        <div class="elEstilo">
-            <h1>Almacenamiento y calculo de IMCs</h1>
-            <!– la informacion se codificarán en tuplas clave=valor separadas por '&' –>
-            <form id="generarTransaccion">
-                <table>
-                    <caption>Calculadora Online</caption>
-                    <tbody>
+    <head>
+        <h1>Calcula tu cuota mensual, facil y rapido</h1>
+    </head>
+    <form id="generarCuota">
+        <main>
+            <section class="laInfo">
+                <div>
+                    <table>
+                        <caption>Datos del credito</caption>  
                         <tr>
-                            <td>Peso</td>
-                            <td><input type="text" value="60.5" id="elPeso" required></td>
-                        </tr>
-                        <tr>
-                            <td>Estatura</td>
-                            <td> <input type="text" value="1.7" id="laEstatura" required></td>
-                        </tr>                
-                        <tr>
-                            <td>Acción:</td> 
-                            <td>   
-                                <input type="radio" value="Calcular" name="accion" checked>IMC
-                                </label><input type="radio" value="Historial" name="accion">Historial          
+                            <td>Nombre</td>
+                            <td>
+                                <input type="text" value="" id="elNombre" class="inputs">
                             </td>
-                        </tr>      
+                        </tr>  
                         <tr>
-                            <td colspan="2"><input type="submit"  value="Enviar"></td>              
+                            <td>Numero de meses</td>
+                            <td>
+                                <input type="number" value="" id="Meses" class="inputs">
+                            </td>
+                        </tr>                     
+                        <tr>
+                            <td>Interes</td>
+                            <td>
+                                <input type="text" value="" id="Interes" class="inputs">
+                            </td>
                         </tr>
                         <tr>
-                            <textarea id="respuesta">
-
-                            </textarea>
-                        </tr>                                
-                    </tbody>
-                </table>                          
-            </form>
-        </div>
-    </main>
-    <footer> 
-        <hr>    
-        Fuente propia para el curso de Estructura de Datos 1 en la Universidad Autónoma de Occidente
-    </footer>
+                            <td>Prestamo</td>
+                            <td>
+                                <input type="number" value="" id="Prestamo" class="inputs">
+                            </td>
+                        </tr>                           
+                    </table>
+                </div>
+                <div>
+                    <textarea id="laRespuesta" readonly></textarea>
+                </div>
+                <div>
+                    <table id="botones">
+                        <td>
+                            <button id="calcular" type="submit">Calcular credito</button>
+                        </td>
+                    </table>
+                </div>
+            </section>
+            <hr>
+        </main>
+    </form>    
 </body>
 </html>
-
-

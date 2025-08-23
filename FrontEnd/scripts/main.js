@@ -8,38 +8,30 @@
 *  para el curso de EDyA1 en la Universidad Autónoma de Occidente
 */
 
-const formElement = document.getElementById("generarTransaccion");
-let respuesta= document.getElementById("respuesta");
+const { response } = require("express");
+
+const formElement = document.getElementById("generarCuota");
+let respuesta= document.getElementById("laRespuesta");
 
 formElement.addEventListener('submit',(event) =>{
     // para que no se recarge la pagina
     event.preventDefault();
-    let peso = document.getElementById("elPeso").value;
-    let estatura = document.getElementById("laEstatura").value;
-    // por ser un radio button
-    let lasAcciones = document.getElementsByName("accion");
-    let accion;
-    for(let i=0; i<lasAcciones.length; i++){
-        if (lasAcciones[i].checked){
-            accion = lasAcciones[i].value;
-            break;
-        }
-    }
+    let nombre = document.getElementById("elNombre").value;   
+    let meses = parseInt(document.getElementById("Meses").value);
+    let interes = parseFloat(document.getElementById("Interes").value);
+    let prestamo = parseInt(document.getElementById("Prestamo").value);
     
-    let transaction = { peso, estatura, accion };
-    let transactionJson = JSON.stringify(transaction);
-    console.log(transactionJson);
-    fetch('http://localhost:3000/transactions',
+    let credito = {nombre, meses, interes, prestamo};
+    let creditoJson = JSON.stringify(credito);
+    console.log(creditoJson);
+
+    fetch('http://localhost:3000/calcular',
     {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'            
           },
-        body: transactionJson
+        body: creditoJson
     })
 
-    fetch('http://localhost:3000/transactions').then(response => response.json());
-    respuesta.textContent=JSON.stringify(datos);
-    
-    
 })

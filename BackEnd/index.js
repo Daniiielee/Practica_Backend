@@ -9,8 +9,6 @@ const cors = require('cors')
 const app = express()
 const port = 3000
 
-let transactionArr = []
-
 //#region 
 app.use(
   express.json()
@@ -19,29 +17,23 @@ app.use(
 app.use(cors());
 //#endregion
 
-app.get('/transactions', (req, res) => {
-  console.log('en get');
-  res.send(JSON.stringify(transactionArr));
+app.get('/', (req, res)=>{
+  res.send("hola");
 })
 
-app.post('/transactions', (req, res) => {  
+app.post('/calcular', (req, res) => {  
   console.log('en post');
-  let transaction = req.body;
- 
-  if (transaction.accion =='Calcular'){
-    const peso = transaction.peso;
-    const estatura = transaction.estatura;
-    // calcula el IMC
-    const imc = misFunciones.obtenerIMC(peso,estatura);
-    // Crea objeto JavaScript
-    const newData = {peso, estatura, imc};
-    console.log( newData );
-    res.send(newData);
-    // Adiciona el nuevo objeto JavaScript
-    transactionArr.unshift(newData);
-  }else{  // Se solicita mostrar el Historial
-    console.log(transactionArr);  
-  }
+  let credito = req.body;
+  const nombre = credito.nombre;
+  const meses = credito.meses;
+  const interes = credito.interes;
+  const prestamo = credito.prestamo;
+  const cuota = misFunciones.calcularcuota(prestamo,interes,meses);
+  // Crea objeto JavaScript
+  const newCredito = {nombre, meses, interes, prestamo, cuota};
+  console.log( newCredito );
+  res.send(newCredito);
+
 })
 
 // se pone en escucha y despliega el primer mensaje

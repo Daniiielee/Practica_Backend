@@ -12,8 +12,22 @@ function obtenerIMC(peso, estatura){
     return peso/(estatura*estatura);
 }
 
+function calcularcuota(prestamo, interes, meses){
+    let i = interes;
+
+    if (i > 1) {
+        i = i/100
+    }
+    let n = meses;
+    let cuota = prestamo * ((Math.pow(1 + i, n) * i) / (Math.pow(1 + i, n) - 1));
+
+  return cuota;
+}
+
+
+
 // se indican las funciones a importar
-module.exports = {obtenerIMC};
+module.exports = {obtenerIMC, calcularcuota};
 
 
 
