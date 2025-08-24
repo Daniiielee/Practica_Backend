@@ -7,9 +7,6 @@
 *  Logico frontEnd para suministrar datos JSON, 
 *  para el curso de EDyA1 en la Universidad Autónoma de Occidente
 */
-
-const { response } = require("express");
-
 const formElement = document.getElementById("generarCuota");
 let respuesta= document.getElementById("laRespuesta");
 
