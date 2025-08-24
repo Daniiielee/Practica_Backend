@@ -9,26 +9,28 @@ document.addEventListener("DOMContentLoaded", () => {
         let meses = parseInt(document.getElementById("Meses").value);
         let interes = parseFloat(document.getElementById("Interes").value);
         let prestamo = parseInt(document.getElementById("Prestamo").value);
-        
-        let credito = {nombre, meses, interes, prestamo};
-        let creditoJson = JSON.stringify(credito);
-        console.log(creditoJson);
+        if (nombre.length==0 || isNaN(meses) || isNaN(interes) || isNaN(prestamo)){
+            respuesta.textContent="  El nombre, numero de meses, interes o el valor del prestamo, no fueron ingresados o tienen valores de entrada errados"
+          }else{
+            let credito = {nombre, meses, interes, prestamo};
+            let creditoJson = JSON.stringify(credito);
+            console.log(creditoJson);
 
-        fetch('http://localhost:3000/calcular',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'            
-            },
-            body: creditoJson
-        })
-        .then(response => response.text())
-        .then(data =>
+            fetch('http://localhost:3000/calcular',
             {
-                console.log("Respuesta del servidor:", data);
-                let mensaje=data;
-                respuesta.value=mensaje;
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'            
+                },
+                body: creditoJson
             })
-
+            .then(response => response.text())
+            .then(data =>
+                {
+                    console.log("Respuesta del servidor:", data);
+                    let mensaje=data;
+                    respuesta.value=mensaje;
+                })
+        }
     })
 });
