@@ -1,15 +1,15 @@
-/*
-*  Archivo utils.js
-*  Creado por: Orlando Arboleda Molina
-*  Fecha: 18-Junio-2024
-*
-*  Descripción: 
-*  Proporciona funciones variadas y generacíon de paginas dinámicas, 
-*  para el curso de EDyA1 en la Universidad Autónoma de Occidente
-*/
-
 function obtenerIMC(peso, estatura){
     return peso/(estatura*estatura);
+}
+
+function armarInformacion(informacion){
+    let nombre = informacion.nombre;
+    let cuota = informacion.cuota;
+    let prestamo = informacion.prestamo;
+    let meses = informacion.meses;
+    let interes = informacion.interes;
+
+    return `  ${nombre} - $${cuota} -- $${prestamo} -- ${meses} meses -- interes ${interes}%`;
 }
 
 function calcularcuota(prestamo, interes, meses){
@@ -20,14 +20,15 @@ function calcularcuota(prestamo, interes, meses){
     }
     let n = meses;
     let cuota = prestamo * ((Math.pow(1 + i, n) * i) / (Math.pow(1 + i, n) - 1));
+    let newCuota= cuota.toFixed(2);
 
-  return cuota;
+  return newCuota;
 }
 
 
 
 // se indican las funciones a importar
-module.exports = {obtenerIMC, calcularcuota};
+module.exports = {obtenerIMC, calcularcuota, armarInformacion};
 
 
 

@@ -32,8 +32,8 @@ app.post('/calcular', (req, res) => {
   // Crea objeto JavaScript
   const newCredito = {nombre, meses, interes, prestamo, cuota};
   console.log( newCredito );
-  res.send(newCredito);
-
+  let mensaje=misFunciones.armarInformacion(newCredito);
+  res.send(mensaje);
 })
 
 // se pone en escucha y despliega el primer mensaje
